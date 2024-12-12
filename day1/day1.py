@@ -10,8 +10,8 @@ rights = []
 
 for line in lines:
     x, y = line.split("  ")
-    lefts.append(x)
-    rights.append(y)
+    lefts.append(int(x.strip()))
+    rights.append(int(y.strip()))
     
 
 lefts.sort()
@@ -20,6 +20,13 @@ rights.sort()
 sums = 0
 
 for x,y in zip(lefts,rights):
-    sums += abs(int(x.strip()) - int( y.strip()))
+    sums += abs(x - y)
 
-print(sums)
+print(f"Sum of the lists is {sums}")
+
+counts = {}
+for i in lefts:
+    if i in rights:
+        counts[i] = i * rights.count(i) 
+
+print(f"Similariy Score is {sum(counts.values())}")
